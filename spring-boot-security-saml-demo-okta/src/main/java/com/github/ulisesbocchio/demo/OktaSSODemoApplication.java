@@ -3,9 +3,13 @@ package com.github.ulisesbocchio.demo;
 import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderSecurityBuilder;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.saml.websso.WebSSOProfileECPImpl;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -35,6 +39,9 @@ public class OktaSSODemoApplication {
             serviceProvider
                 .metadataGenerator()
                 .entityId("localhost-demo")
+                .bindingsSSO("artifact", "post", "paos")
+            .and()
+                .ecpProfile()
             .and()
                 .sso()
                 .defaultSuccessURL("/home")
@@ -45,6 +52,7 @@ public class OktaSSODemoApplication {
                 .refreshCheckInterval(0)
             .and()
                 .extendedMetadata()
+                .ecpEnabled(true)
                 .idpDiscoveryEnabled(true)//set to false for no IDP Selection page.
             .and()
                 .keyManager()
