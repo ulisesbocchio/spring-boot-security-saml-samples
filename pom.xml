@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.ulisesbocchio</groupId>
+    <artifactId>spring-boot-security-saml-samples-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.3-SNAPSHOT</version>
+    <name>Spring Boot Security SAML Parent</name>
+    <description>Parent POM for project that eases Integration between Spring Boot and spring-security-saml through properties and adapters</description>
+    <url>https://github.com/ulisesbocchio/spring-boot-security-saml</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.boot.version>1.3.5.RELEASE</spring.boot.version>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
+        <maven.compiler.version>3.3</maven.compiler.version>
+        <start-class>Application</start-class>
+        <spring.boot.security.saml.version>1.3-SNAPSHOT</spring.boot.security.saml.version>
+    </properties>
+
+    <modules>
+        <module>spring-security-saml-sample</module>
+        <module>spring-boot-security-saml-demo-dsl</module>
+        <module>spring-boot-security-saml-demo-okta</module>
+        <module>spring-boot-security-saml-demo-props</module>
+    </modules>
+
+    <issueManagement>
+        <url>https://github.com/ulisesbocchio/spring-boot-security-saml/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/ulisesbocchio/spring-boot-security-saml</url>
+        <connection>scm:git:git://github.com/ulisesbocchio/spring-boot-security-saml</connection>
+        <developerConnection>scm:git:git@github.com:ulisesbocchio/spring-boot-security-saml.git</developerConnection>
+      <tag>spring-boot-security-saml-parent-1.0</tag>
+  </scm>
+
+    <developers>
+        <developer>
+            <name>Ulises Bocchio</name>
+            <url>https://github.com/ulisesbocchio</url>
+            <id>ulisesbocchio</id>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <mainClass>${start-class}</mainClass>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring.security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>spring-boot-security-saml</artifactId>
+                <version>${spring.boot.security.saml.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
