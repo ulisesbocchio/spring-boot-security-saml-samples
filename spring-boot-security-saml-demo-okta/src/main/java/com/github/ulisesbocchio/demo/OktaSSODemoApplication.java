@@ -4,12 +4,10 @@ import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLS
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderSecurityBuilder;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.saml.websso.WebSSOProfileECPImpl;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -28,14 +26,28 @@ public class OktaSSODemoApplication {
         public void addViewControllers(ViewControllerRegistry registry) {
             registry.addViewController("/").setViewName("index");
             registry.addViewController("/protected").setViewName("protected");
+            registry.addViewController("/unprotected/help").setViewName("help");
 
         }
     }
 
     @Configuration
     public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
+            http.authorizeRequests()
+                    .antMatchers("/unprotected/**")
+                    .permitAll()
+                .and()
+                    .anonymous();
+            // @formatter:on
+        }
+
         @Override
         public void configure(ServiceProviderSecurityBuilder serviceProvider) throws Exception {
+            // @formatter:off
             serviceProvider
                 .metadataGenerator()
                 .entityId("localhost-demo")
@@ -58,6 +70,7 @@ public class OktaSSODemoApplication {
                 .keyManager()
                 .privateKeyDERLocation("classpath:/localhost.key.der")
                 .publicKeyPEMLocation("classpath:/localhost.cert");
+            // @formatter:on
 
         }
     }
