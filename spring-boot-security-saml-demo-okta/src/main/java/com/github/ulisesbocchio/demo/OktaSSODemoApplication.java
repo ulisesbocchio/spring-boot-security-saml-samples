@@ -2,7 +2,7 @@ package com.github.ulisesbocchio.demo;
 
 import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
-import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderSecurityBuilder;
+import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderBuilder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -46,7 +46,7 @@ public class OktaSSODemoApplication {
         }
 
         @Override
-        public void configure(ServiceProviderSecurityBuilder serviceProvider) throws Exception {
+        public void configure(ServiceProviderBuilder serviceProvider) throws Exception {
             // @formatter:off
             serviceProvider
                 .metadataGenerator()
