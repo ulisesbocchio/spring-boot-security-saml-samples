@@ -71,7 +71,7 @@ public class OktaSSODemoApplication2 {
                 .and()
                     .apply(saml())
                     .serviceProvider()
-                    .metadataGenerator()
+                        .metadataGenerator()
                         .entityId("localhost-demo")
                         .bindingsSSO("artifact", "post", "paos")
                     .and()
