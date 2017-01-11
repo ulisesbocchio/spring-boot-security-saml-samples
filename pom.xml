@@ -18,7 +18,7 @@
         <spring.security.version>4.1.1.RELEASE</spring.security.version>
         <maven.compiler.version>3.3</maven.compiler.version>
         <start-class>Application</start-class>
-        <spring.boot.security.saml.version>1.8-SNAPSHOT</spring.boot.security.saml.version>
+        <spring.boot.security.saml.version>1.10-SNAPSHOT</spring.boot.security.saml.version>
     </properties>
 
     <modules>
