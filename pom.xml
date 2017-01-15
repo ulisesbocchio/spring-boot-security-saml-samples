@@ -18,7 +18,7 @@
         <spring.security.version>4.1.1.RELEASE</spring.security.version>
         <maven.compiler.version>3.3</maven.compiler.version>
         <start-class>Application</start-class>
-        <spring.boot.security.saml.version>1.10-SNAPSHOT</spring.boot.security.saml.version>
+        <spring.boot.security.saml.version>1.11-SNAPSHOT</spring.boot.security.saml.version>
     </properties>
 
     <modules>
@@ -27,6 +27,7 @@
         <module>spring-boot-security-saml-demo-okta</module>
         <module>spring-boot-security-saml-demo-okta2</module>
         <module>spring-boot-security-saml-demo-props</module>
+        <module>spring-boot-security-saml-demo-static-metadata</module>
     </modules>
 
     <issueManagement>
