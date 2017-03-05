@@ -1,0 +1,23 @@
+<EntityDescriptor entityID="urn:ulisesbocchio.auth0.com" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+  <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <KeyDescriptor use="signing">
+      <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <X509Data>
+          <X509Certificate>MIIC9jCCAd6gAwIBAgIJNrKFCkHWDRQWMA0GCSqGSIb3DQEBCwUAMCIxIDAeBgNVBAMTF3VsaXNlc2JvY2NoaW8uYXV0aDAuY29tMB4XDTE3MDMwMzEyNTY0NVoXDTMwMTExMDEyNTY0NVowIjEgMB4GA1UEAxMXdWxpc2VzYm9jY2hpby5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCZNXivxdRqrnnmwLG4msH4tU2e+hXAS/CCXh1KAF9loBzzrGgG/fM6/KffpNKlEmrX1MdEVlCZLMkXg/F/riC5OkkERyl18A+BSsOOxBBVf5VwnYX3g2o4WQmPGBqUCHUK2VgCqRvTE2dyAgEvvhcD5b8MZ7KpTxt2WE34MtvD5rGERkVUVUcnq9RICMQSjf16nOip/XXXvM5Yx+fJGVs0/4Bz8HnedQZlBdOrqBh1UJb2Z3f4tIhktjavSllCOhKGgTMiHpuXoZtsc36UMjQdfUD5ejxrRhs8JPLBlHRz3oANTdk1fuEHT77CJjyS8MrAeymFgN6DUTg3WJ5G2+AdAgMBAAGjLzAtMAwGA1UdEwQFMAMBAf8wHQYDVR0OBBYEFI2587DMoucJtI6F0AVTLdKufEVfMA0GCSqGSIb3DQEBCwUAA4IBAQAWaB6NQNIkJhukz/GhqyAzQFr5z+PzzOQI5/mXV8iX95juoM8BKPXWoZL1GNol2D7ruMB1U5jGklE2nlPFvbepoTW3N6xrN9hw48IloA1BbbvQlHFgFwP27Hm9XcM9CGOpswCKyogs/rOSGekehw5tjAtaZZmuNq74YzI3LZK20Dp/kDtKawZb6bqTMDBaFJooHycRvcaPFDXjoceTKiPC2LNjU5zniSXQDg8J6obxMWsY4VixG32Y+YElErij/Llfj9EbF7SeLZeC3mgcozlmqGRVWXrR3fAAuQZR3sla3BFMVQVvyJwAWi7IPCa8i7+jzsD5pPBtx5wKoepBIkeF</X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </KeyDescriptor>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://ulisesbocchio.auth0.com/samlp/pEzftcUSFCHc8rlS1RNjZSY4zRQttGMx/logout"/>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ulisesbocchio.auth0.com/samlp/pEzftcUSFCHc8rlS1RNjZSY4zRQttGMx/logout"/>
+    <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://ulisesbocchio.auth0.com/samlp/pEzftcUSFCHc8rlS1RNjZSY4zRQttGMx"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ulisesbocchio.auth0.com/samlp/pEzftcUSFCHc8rlS1RNjZSY4zRQttGMx"/>
+    <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" FriendlyName="E-Mail Address" xmlns="urn:oasis:names:tc:SAML:2.0:assertion"/>
+    <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" FriendlyName="Given Name" xmlns="urn:oasis:names:tc:SAML:2.0:assertion"/>
+    <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" FriendlyName="Name" xmlns="urn:oasis:names:tc:SAML:2.0:assertion"/>
+    <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" FriendlyName="Surname" xmlns="urn:oasis:names:tc:SAML:2.0:assertion"/>
+    <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" FriendlyName="Name ID" xmlns="urn:oasis:names:tc:SAML:2.0:assertion"/>
+  </IDPSSODescriptor>
+</EntityDescriptor>

@@ -115,7 +115,7 @@ public class Auth0SSODemoApplication {
                 .idpSelectionPageURL("/idpselection")
             .and()
                 .metadataManager()
-                .metadataLocations("classpath:/idp-auth0.xml")
+                .metadataLocations("classpath:/idp-auth0-new.xml")
                 .refreshCheckInterval(0)
             .and()
                 .extendedMetadata()
