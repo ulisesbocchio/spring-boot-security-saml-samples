@@ -6,6 +6,8 @@ import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProv
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.saml.context.SAMLContextProvider;
+import org.springframework.security.saml.context.SAMLContextProviderLB;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -38,8 +40,10 @@ public class SpringBootSecuritySAMLDemoApplication {
 
     @Configuration
     public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
+
         @Override
         public void configure(ServiceProviderBuilder serviceProvider) throws Exception {
+
             serviceProvider
                 .metadataGenerator()
                 .entityId("localhost-demo")
@@ -60,7 +64,14 @@ public class SpringBootSecuritySAMLDemoApplication {
             .and()
                 .keyManager()
                 .privateKeyDERLocation("classpath:/localhost.key.der")
-                .publicKeyPEMLocation("classpath:/localhost.cert");
+                .publicKeyPEMLocation("classpath:/localhost.cert")
+            .and()
+                .samlContextProviderLb()
+                .scheme("http")
+                .contextPath("/")
+                .serverName("localhost")
+                .serverPort(8080)
+                .includeServerPortInRequestURL(true);
 
         }
     }
