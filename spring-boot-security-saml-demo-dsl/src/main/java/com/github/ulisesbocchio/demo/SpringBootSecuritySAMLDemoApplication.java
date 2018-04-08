@@ -1,6 +1,5 @@
 package com.github.ulisesbocchio.demo;
 
-import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderBuilder;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-@EnableSAMLSSO
+@EnableSAMLSSOWhenNotInTest
 public class SpringBootSecuritySAMLDemoApplication {
 
     public static void main(String[] args) {
@@ -30,27 +29,19 @@ public class SpringBootSecuritySAMLDemoApplication {
         }
     }
 
-//    @Configuration
-//    public static class MySecurityConfig extends WebSecurityConfigurerAdapter {
-//        @Override
-//        protected void configure(HttpSecurity http) throws Exception {
-//            http.apply()
-//        }
-//    }
-
     @Configuration
     public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                .regexMatchers("/")
-                .permitAll();
+                    .regexMatchers("/")
+                    .permitAll();
         }
 
         @Override
         public void configure(ServiceProviderBuilder serviceProvider) throws Exception {
-
+            // @formatter:off
             serviceProvider
                 .metadataGenerator()
                 .entityId("localhost-demo")
@@ -80,6 +71,7 @@ public class SpringBootSecuritySAMLDemoApplication {
                 .serverPort(8080)
                 .includeServerPortInRequestURL(true)
             .and();
+            // @formatter:on
 
         }
     }
