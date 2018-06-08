@@ -1,5 +1,11 @@
 package com.ulisesbocchio.security.saml.spring.security;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.opensaml.saml2.core.Attribute;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.schema.XSAny;
@@ -8,12 +14,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.saml.SAMLCredential;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author Ulises Bocchio
@@ -67,7 +67,12 @@ public class SAMLUserDetails implements UserDetails {
 
     public Map<String, String> getAttributes() {
         return samlCredential.getAttributes().stream()
-                .collect(Collectors.toMap(Attribute::getName, this::getValue));
+                .collect(Collectors.toMap(Attribute::getName, this::getString));
+    }
+
+    private String getString(Attribute attribute) {
+        String value = getValue(attribute);
+        return value == null ? "" : value;
     }
 
     private String getValue(Attribute attribute) {
