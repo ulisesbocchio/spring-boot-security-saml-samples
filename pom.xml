@@ -16,11 +16,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring.boot.version>1.4.0.RELEASE</spring.boot.version>
-        <spring.security.version>4.1.1.RELEASE</spring.security.version>
-        <maven.compiler.version>3.3</maven.compiler.version>
+        <spring.boot.version>1.5.11.RELEASE</spring.boot.version>
+        <spring.security.version>4.2.5.RELEASE</spring.security.version>
+        <maven.compiler.version>3.7.0</maven.compiler.version>
         <start-class>Application</start-class>
-        <spring.boot.security.saml.version>1.14-SNAPSHOT</spring.boot.security.saml.version>
+        <spring.boot.security.saml.version>1.16-SNAPSHOT</spring.boot.security.saml.version>
     </properties>
 
     <modules>

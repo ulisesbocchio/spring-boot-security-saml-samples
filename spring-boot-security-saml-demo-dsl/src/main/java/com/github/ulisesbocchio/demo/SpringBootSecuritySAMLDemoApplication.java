@@ -1,18 +1,16 @@
 package com.github.ulisesbocchio.demo;
 
-import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
-import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderBuilder;
+import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.saml.context.SAMLContextProvider;
-import org.springframework.security.saml.context.SAMLContextProviderLB;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-@EnableSAMLSSO
+@EnableSAMLSSOWhenNotInTest
 public class SpringBootSecuritySAMLDemoApplication {
 
     public static void main(String[] args) {
@@ -26,24 +24,24 @@ public class SpringBootSecuritySAMLDemoApplication {
         public void addViewControllers(ViewControllerRegistry registry) {
             registry.addViewController("/").setViewName("index");
             registry.addViewController("/protected").setViewName("protected");
+            registry.addViewController("/afterlogout").setViewName("afterlogout");
 
         }
     }
-
-//    @Configuration
-//    public static class MySecurityConfig extends WebSecurityConfigurerAdapter {
-//        @Override
-//        protected void configure(HttpSecurity http) throws Exception {
-//            http.apply()
-//        }
-//    }
 
     @Configuration
     public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
 
         @Override
-        public void configure(ServiceProviderBuilder serviceProvider) throws Exception {
+        public void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    .regexMatchers("/")
+                    .permitAll();
+        }
 
+        @Override
+        public void configure(ServiceProviderBuilder serviceProvider) throws Exception {
+            // @formatter:off
             serviceProvider
                 .metadataGenerator()
                 .entityId("localhost-demo")
@@ -53,7 +51,7 @@ public class SpringBootSecuritySAMLDemoApplication {
                 .idpSelectionPageURL("/idpselection")
             .and()
                 .logout()
-                .defaultTargetURL("/")
+                .defaultTargetURL("/afterlogout")
             .and()
                 .metadataManager()
                 .metadataLocations("classpath:/idp-ssocircle.xml")
@@ -71,7 +69,9 @@ public class SpringBootSecuritySAMLDemoApplication {
                 .contextPath("/")
                 .serverName("localhost")
                 .serverPort(8080)
-                .includeServerPortInRequestURL(true);
+                .includeServerPortInRequestURL(true)
+            .and();
+            // @formatter:on
 
         }
     }
