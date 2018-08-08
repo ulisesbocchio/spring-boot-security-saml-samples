@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableSAMLSSO
@@ -23,7 +23,7 @@ public class OktaSSODemoApplication2 {
     }
 
     @Configuration
-    public static class MvcConfig extends WebMvcConfigurerAdapter {
+    public static class MvcConfig implements WebMvcConfigurer {
 
         @Override
         public void addViewControllers(ViewControllerRegistry registry) {
