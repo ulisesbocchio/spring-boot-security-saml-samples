@@ -23,7 +23,7 @@ import org.springframework.security.saml.SAMLBootstrap;
 import org.springframework.security.saml.SAMLCredential;
 import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Collection;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class Auth0SSODemoApplication {
     }
 
     @Configuration
-    public static class MvcConfig extends WebMvcConfigurerAdapter {
+    public static class MvcConfig implements WebMvcConfigurer {
 
         @Override
         public void addViewControllers(ViewControllerRegistry registry) {

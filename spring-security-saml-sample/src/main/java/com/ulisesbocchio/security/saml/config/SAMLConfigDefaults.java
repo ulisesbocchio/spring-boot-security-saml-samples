@@ -2,7 +2,6 @@ package com.ulisesbocchio.security.saml.config;
 
 import org.opensaml.saml2.metadata.provider.MetadataProvider;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
-import org.opensaml.util.resource.ResourceException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.saml.SAMLBootstrap;
@@ -70,7 +69,7 @@ public class SAMLConfigDefaults {
     }
 
     @Bean
-    public CachingMetadataManager metadataManager(List<MetadataProvider> metadataProviders) throws MetadataProviderException, ResourceException {
+    public CachingMetadataManager metadataManager(List<MetadataProvider> metadataProviders) throws MetadataProviderException {
         return new CachingMetadataManager(metadataProviders);
     }
 }

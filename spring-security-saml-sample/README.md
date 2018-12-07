@@ -27,8 +27,13 @@ To use OneLogin with this sample application, you'll have to:
   - *RelayState:* You can use anything here.
   - *Audience:* localhost-demo
   - *Recipient:* http://localhost:8080/saml/SSO
+<<<<<<< HEAD
   - *ACS (Consumer) URL Validator:* ^http://localhost:8080/saml/SSO.*$
   - *ACS (Consumer) URL:* http://localhost:8080/home
+=======
+  - *ACS (Consumer) URL Validator:* ^http://localhost:8080/saml/login.*$
+  - *ACS (Consumer) URL:* http://localhost:8080/saml/SSO
+>>>>>>> ulisesbocchio/master
   - *Single Logout URL:* http://localhost:8080/saml/SingleLogout
   - *Parameters:* You can add additional parameters like firstName, lastName.
 - In the SSO tab:
